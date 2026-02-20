@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📌 概要
 
-## Getting Started
+本プロジェクトは、Next.js (App Router) と Material UI (MUI) を用いて、ECサイトのフロントエンド機能を実装したポートフォリオ向けアプリケーションです。
 
-First, run the development server:
+FigmaのUI Kitをベースに、コンポーネント単位で分解したUIをReactコンポーネントへ落とし込み、ユーザー体験および保守性を考慮した設計を行っています。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 目的
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ECサイトにおける基本的なユーザー購買体験のUIを再現する
+- React + TypeScript を用いたコンポーネント設計の実装
+- MUIのThemeを用いたデザインの統一
+- API接続を想定したデータ構造設計
+- レスポンシブデザインの実装（SP / TB / PC）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ 使用技術
 
-To learn more about Next.js, take a look at the following resources:
+| 技術            | 内容                       |
+| --------------- | -------------------------- |
+| Next.js         | App Router                 |
+| React           | UI構築                     |
+| TypeScript      | 型安全な実装               |
+| Material UI     | UIコンポーネントライブラリ |
+| React Hook Form | フォーム管理               |
+| Context API     | カート状態管理             |
+| Figma           | UIデザイン設計             |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🖥️ 画面一覧
 
-## Deploy on Vercel
+| 画面名         | ルート               | 内容                         |
+| -------------- | -------------------- | ---------------------------- |
+| TOP            | `/`                  | おすすめ商品、カテゴリ表示   |
+| 商品一覧       | `/products`          | 商品検索、絞り込み、並び替え |
+| 商品詳細       | `/products/[id]`     | 商品情報表示、カート追加     |
+| カート         | `/cart`              | 商品数量変更、削除、合計表示 |
+| チェックアウト | `/checkout`          | 配送先入力フォーム           |
+| 注文完了       | `/checkout/complete` | 完了画面                     |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⚙️ 実装機能
+
+### 商品一覧
+
+- 商品の一覧表示
+- キーワード検索（商品名）
+- カテゴリによる絞り込み
+- 価格帯によるフィルタリング
+- 並び替え（新着 / 価格昇順 / 価格降順）
+- ページング表示
+- URLクエリパラメータとの同期
+
+---
+
+### 商品詳細
+
+- 商品画像表示
+- 商品説明
+- 価格表示
+- 在庫状況表示
+- 数量選択
+- カートへの追加
+
+---
+
+### カート機能
+
+- 商品追加
+- 数量変更
+- 商品削除
+- 小計表示
+- 合計金額表示
+- Snackbarによる操作通知
+
+---
+
+### チェックアウト機能
+
+- ユーザー情報入力フォーム
+- バリデーション（必須入力 / 入力形式）
+- 注文完了画面への遷移
+
+---
+
+## 🧩 データ構造
+
+### Product
+
+id: string  
+name: string  
+description: string  
+price: number  
+images: string[]  
+categoryId: string  
+stock: number  
+rating?: number  
+createdAt: string
+
+### Category
+
+id: string  
+name: string
+
+### CartItem
+
+productId: string  
+quantity: number  
+unitPrice: number  
+name: string  
+image: string
+
+---
+
+## 📂 ディレクトリ構成
+
+src/  
+ ├ app/  
+ │ ├ page.tsx  
+ │ ├ products/  
+ │ │ ├ page.tsx  
+ │ │ └ [id]/page.tsx  
+ │ ├ cart/page.tsx  
+ │ └ checkout/  
+ │ ├ page.tsx  
+ │ └ complete/page.tsx  
+ ├ components/  
+ │ ├ layout/  
+ │ └ ui/  
+ ├ features/  
+ │ ├ products/  
+ │ ├ cart/  
+ │ └ checkout/  
+ ├ lib/  
+ │ └ mock/  
+ ├ types/
+
+---
+
+## 📱 非機能要件
+
+- TypeScriptによる型安全な設計
+- MUI ThemeによるUIの統一
+- next/imageを使用した画像最適化
+- レスポンシブ対応（SP / TB / PC）
+- アクセシビリティを考慮したUI設計
+
+---
+
+## 🚀 今後の拡張予定
+
+- API連携
+- ユーザー認証機能
+- 注文履歴機能
+- 管理画面
