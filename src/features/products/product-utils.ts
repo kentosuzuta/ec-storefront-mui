@@ -51,4 +51,6 @@ export const formatJPY = (amount: number) =>
     style: "currency",
     currency: "JPY",
     maximumFractionDigits: 0,
-  }).format(amount);
+  })
+    .format(amount)
+    .replace("￥", "¥");
