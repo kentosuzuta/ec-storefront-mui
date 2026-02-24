@@ -1,5 +1,6 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -16,6 +17,11 @@ import { useCart } from "@/features/cart/CartContext";
 
 export const Header = () => {
   const { totalCount } = useCart();
+  const isHydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   return (
     <AppBar
@@ -40,7 +46,7 @@ export const Header = () => {
             </IconButton>
             <Link href="/cart" aria-label="Open cart">
               <IconButton>
-                <Badge badgeContent={totalCount} color="secondary">
+                <Badge badgeContent={isHydrated ? totalCount : 0} color="secondary">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
               </IconButton>

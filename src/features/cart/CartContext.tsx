@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { Alert, Snackbar } from "@mui/material";
 import { CartItem, Product } from "@/types";
+import { Alert, Snackbar } from "@mui/material";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 type CartContextValue = {
   items: CartItem[];
@@ -108,7 +108,15 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <CartContext.Provider
-      value={{ items, totalCount, subtotal, addItem, updateQuantity, removeItem, clearCart }}
+      value={{
+        items,
+        totalCount,
+        subtotal,
+        addItem,
+        updateQuantity,
+        removeItem,
+        clearCart,
+      }}
     >
       {children}
       <Snackbar
