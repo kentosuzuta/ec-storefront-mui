@@ -150,3 +150,12 @@ src/
 - next/imageを使用した画像最適化
 - レスポンシブ対応（SP / TB / PC）
 - アクセシビリティを考慮したUI設計
+
+
+## Design Reference
+
+This project UI is based on a Figma Community UI Kit.
+
+https://www.figma.com/community
+
+The purpose of this project is for learning and portfolio.
